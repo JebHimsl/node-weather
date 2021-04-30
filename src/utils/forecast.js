@@ -9,7 +9,7 @@ const forecast = (long, lat, callback) => {
         const {body} = response;
         const {current, location, error} = body;
         //const {info} = error;
-        const {temperature, feelslike, weather_descriptions} = current;
+        const {temperature, feelslike, weather_descriptions, humidity} = current;
         const {name, localtime} = location;
 
         if (procError) {
@@ -25,6 +25,7 @@ const forecast = (long, lat, callback) => {
                 let resp = "Currently in " + name + " at " + localtime;
                 resp += "\nIt is currently " + temperature + " degrees out.";
                 resp += "\nIt feels like " + feelslike + " degrees out.";
+                resp += "\nHumidity is " + humidity + "%.";
                 let desc = weather_descriptions;
                 let dhold = "";
                 for (i = 0; i < desc.length; i++) {
@@ -37,7 +38,8 @@ const forecast = (long, lat, callback) => {
                     temperature: temperature,
                     feelslike: feelslike,
                     location: name,
-                    forecast: dhold
+                    forecast: dhold,
+                    humidity: humidity
                 }
                 callback(undefined, jresp); //Must have both error (undefined) and response parameters.
             }

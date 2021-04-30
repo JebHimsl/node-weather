@@ -84,7 +84,8 @@ app.get('/weather', (req, res) => {
                         address: query.address,
                         feelslike: data.feelslike,
                         temperature: data.temperature, 
-                        place: place
+                        place: place,
+                        humidity: data.humidity
                     });
                 }
             });

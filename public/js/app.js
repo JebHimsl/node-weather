@@ -23,10 +23,12 @@ const searchElement = document.querySelector('input');
 const p1 = document.querySelector('#p1');
 const p2 = document.querySelector('#p2');
 const p3 = document.querySelector('#p3');
+const p4 = document.querySelector('#p4');
 
 p1.textContent= '';
 p2.textContent= '';
 p3.textContent= '';
+p4.textContent= '';
 
 weatherForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -41,6 +43,8 @@ weatherForm.addEventListener('submit', (e) => {
 
     p1.textContent='Loading...';
     p2.textContent='';
+    p3.textContent='';
+    p4.textContent= '';
 
     fetch(url).then((response) => {
         response.json().then((data) => {
@@ -55,6 +59,7 @@ weatherForm.addEventListener('submit', (e) => {
                 p1.textContent= 'Location: ' + data.location;
                 p2.textContent= 'Forecast: ' + data.forecast;
                 p3.textContent= 'Temp: ' + data.temperature + '  ... but it feels like: ' + data.feelslike;
+                p4.textContent= 'The humidity is ' + data.humidity + '%.';
             }
         })
     });
